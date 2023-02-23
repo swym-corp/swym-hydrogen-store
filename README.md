@@ -53,11 +53,10 @@ npm run preview
 
 Here are some docs which will be helpful in the implementation
 
-- [Getting started with Hydrogen](https://shopify.dev/docs/custom-storefronts/hydrogen/getting-started/quickstart)
-- [How to link your shopify account with hydrogen storefront](https://github.com/swym-corp/hydrogen-storefront/wiki/How-to-link-your-shopify-account-with-hydrogen-storefront)
-- [Setting up swym wishlist code for the hydrogen store](https://github.com/swym-corp/hydrogen-storefront/wiki/Setting-up-Swym-wishlist-code-for-the-hydrogen-store)
-- [A brief overview of Wishlist code used for this implementation](https://github.com/swym-corp/hydrogen-storefront/wiki/Wishlist-Code-Overview)
+- <a href="https://shopify.dev/docs/custom-storefronts/hydrogen/getting-started/quickstart" target="_blank">Getting started with Hydrogen</a>
+- <a href="https://github.com/swym-corp/swym-hydrogen-store/wiki/How-to-link-your-shopify-account-with-hydrogen-storefront" target="_blank">How to link your shopify account with hydrogen storefront</a>
+- <a href="https://swym-corp.github.io/hydrogen-docs/#0" target="_blank">Setting up swym wishlist code for the hydrogen store</a>
+- <a href="https://github.com/swym-corp/swym-hydrogen-store/wiki/Wishlist-Code-Overview" target="_blank">A brief overview of Wishlist code used for this implementation</a>
 
 ## Deployment 
 - We have deployed our demo hydrogen store using vercel
-
