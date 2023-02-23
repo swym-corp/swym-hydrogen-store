@@ -78,6 +78,7 @@ function CreateList({
           setalertBoxTitle('Success');
           setalertBoxInfo('List Created');
           setWishlistName('');
+          return res;
         } else {
           setshowAlertBox(true);
           setalertBoxType('error');
@@ -124,12 +125,17 @@ function CreateList({
   const addProductToWishlist = async () => {
     const productUrl = window.location.href;
     try {
+      let selectedListName = savedList[selectedCustomNameIndex]?.lid;
+      if (wishlistName && wishlistName.length > 0) {
+        let newList = await createListByName();
+        selectedListName = newList.lid;
+      }
       setaddToWishlistLoading(true);
       const res = await AddToWishlist(
         productId,
         productVariantId,
         productUrl,
-        savedList[selectedCustomNameIndex]?.lid,
+        selectedListName,
       );
       setaddToWishlistLoading(false);
       if (res?.a) {
