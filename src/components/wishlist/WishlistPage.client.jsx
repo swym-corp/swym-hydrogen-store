@@ -137,7 +137,8 @@ export function WishlistPage() {
     setselectedListIndex(index);
   };
 
-  const getSelectedClass = (id) => (selectedListIndex === id ? 'selected' : '');
+  const getSelectedClass = (id) =>
+    selectedListIndex === id ? 'selected text-white' : '';
 
   return (
     <div>
@@ -200,12 +201,7 @@ export function WishlistPage() {
                             id="navlist"
                             onClick={(e) => handleListValueChange(e, index)}
                           >
-                            <div class="flex-1 min-w-0">
-                              {/* <span className="swym-wishlist-badge swym-bg-1 swym-bg-2 swym-color-4">
-                            {getWishlistBadgeLetters(lname, 'MW')}
-                          </span> */}
-                              {lname}
-                            </div>
+                            <Text class="flex-1 min-w-0">{lname}</Text>
                           </li>
                         ))}
                     </ul>
