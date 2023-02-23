@@ -14,7 +14,7 @@
 
 [Check out our API Docs](https://api-docs.swym.it/v3/#rest-apis)
 
-[Here's a demo store with Swym Wishlist already setup](https://hydrogen-storefront-pdub.vercel.app/)
+[Here's a demo store with Swym Wishlist already setup](https://swym-hydrogen-store.vercel.app)
 
 ## Getting started
 
