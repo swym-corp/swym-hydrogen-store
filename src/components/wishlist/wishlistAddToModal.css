@@ -86,10 +86,7 @@
     cursor: pointer;
 }
 .swym-color-2 {
-    color: #42445c;
-}
-.swym-color-2 {
-    color: #42445c;
+    color: #42445c !important;
     border: 1px soild #434655 !important;
 }
 .swym-border-color-1 {

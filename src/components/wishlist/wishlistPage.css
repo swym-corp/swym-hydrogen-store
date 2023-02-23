@@ -44,7 +44,7 @@
 .swym-wishlist-style-li{
   position:relative;
   padding:15px 10px;
-  color:#fff;
+  /* color:#fff; */
   border-bottom:1px solid rgba(255,255,255,.1);
   overflow:hidden;
   margin-right: 40px;
