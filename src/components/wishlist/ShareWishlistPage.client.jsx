@@ -3,7 +3,10 @@ import {ProductOptionsProvider} from '@shopify/hydrogen';
 import './wishlistPage.css';
 import {AddToCartButton} from '@shopify/hydrogen';
 import {Heading, Text} from '~/components';
-import {fetchListWithContents} from '../../swym/store-apis';
+import {
+  callGenrateRegidAPI,
+  fetchListWithContents
+} from '../../swym/store-apis';
 import STRINGS from './Utils/strings';
 
 /*
@@ -22,13 +25,15 @@ export function ShareWishlistPage() {
   useEffect(() => {
     const url = window.location.search;
     const params = new URLSearchParams(url);
-    setLid(params.get('lid'));
     if (lid) {
-      getSetListItems();
+      getSetListItems({});
+    } else {
+      setLid(params.get('lid'));
     }
   }, [lid]);
 
-  const getSetListItems = () => {
+  const getSetListItems = async () => {
+    await callGenrateRegidAPI({});
     fetchListWithContents(lid)
       .then((response) => {
         setItems(response?.items);
