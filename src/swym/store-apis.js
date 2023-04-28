@@ -25,7 +25,7 @@ export const callGenrateRegidAPI = async ({
 
   urlencoded.append('appId', appId);
   urlencoded.append('useragenttype', useragenttype);
-  axios
+  return await axios
     .post('/api/genrateRegid/', {
       appId,
       useragenttype,
