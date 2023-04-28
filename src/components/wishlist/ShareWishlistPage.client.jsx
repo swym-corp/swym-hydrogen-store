@@ -5,9 +5,10 @@ import {AddToCartButton} from '@shopify/hydrogen';
 import {Heading, Text} from '~/components';
 import {
   callGenrateRegidAPI,
-  fetchListWithContents
+  fetchListWithContents,
 } from '../../swym/store-apis';
 import STRINGS from './Utils/strings';
+import { getSwymLocalStorage } from '../../swym/Utils';
 
 /*
   @author: swym
@@ -33,7 +34,10 @@ export function ShareWishlistPage() {
   }, [lid]);
 
   const getSetListItems = async () => {
-    await callGenrateRegidAPI({});
+    const swymConfig = getSwymLocalStorage();
+    if (!swymConfig || !swymConfig.regid) {
+      await callGenrateRegidAPI({});
+    }
     fetchListWithContents(lid)
       .then((response) => {
         setItems(response?.items);
