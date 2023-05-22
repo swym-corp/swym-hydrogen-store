@@ -12,6 +12,7 @@ import {
 import {Heading, Text, Button, ProductOptions} from '~/components';
 import {WishlistButton} from '../wishlist/WishlistButton.client';
 import SwymAlert from '../../swym/Alert';
+import SocialCountSection from '../social-count/SocialCountSection';
 
 export function ProductForm({productData}) {
   const {pathname, search} = useUrl();
@@ -141,6 +142,9 @@ export function ProductForm({productData}) {
         {!isOutOfStock && <ShopPayButton variantIds={[selectedVariant.id]} />}
         <WishlistButton
           selectedVariant={selectedVariant}
+          productData={productData}
+        />
+        <SocialCountSection
           productData={productData}
         />
       </div>
