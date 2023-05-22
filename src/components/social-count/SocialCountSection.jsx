@@ -2,6 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {getWishlistSocialCount} from '../../swym/store-apis';
 import './SocialCountSection.css';
 
+/**
+ * @author swym
+ * @param {*} productData - This contains information about the product
+ * @returns JSX for Social Count Section on PDP
+ */
 export default function SocialCountSection(productData) {
   const [count, setCount] = useState(0);
   
