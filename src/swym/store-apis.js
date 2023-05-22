@@ -347,3 +347,52 @@ export const fetchSwymAccessToken = async () => {
     });
   return res;
 };
+
+
+
+/**
+ * @author swym
+ * @dev fetches the wishlist social count of a product 
+ * @param {Number} empi 
+ * @param {String} du 
+ * @returns {Object} data
+ */
+export const getWishlistSocialCount = async (empi, du) => {
+  var myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+  const swymConfig = getSwymLocalStorage();
+  if (!swymConfig || !swymConfig.regid) {
+    await callGenrateRegidAPI({
+      username: null,
+      uuid: uuidv4(),
+      cb: () => fetchList(),
+    });
+  } else {
+    var urlencoded = new URLSearchParams();
+    urlencoded.append('regid', swymConfig.regid);
+    urlencoded.append('sessionid', swymConfig.sessionid);
+    urlencoded.append('empi', empi);
+    urlencoded.append('du', du);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    };
+    return await fetch(
+      `${SWYM_CONFIG.ENDPOINT}api/v3/product/wishlist/social-count?pid=${encodeURIComponent(
+        SWYM_PID,
+      )}`,
+      requestOptions,
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        return result;
+      })
+      .catch((error) => {
+        console.log('error', error);
+        return error;
+      });
+  }
+}
