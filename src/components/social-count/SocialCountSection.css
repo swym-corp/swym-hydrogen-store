@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     gap: 5px;
-    background: #9b5c5c;
-    color: #c7bebe;
+    background: #e08b8b;
+    color: #eee5e5;
     padding: 10px 15px;
     border-radius: 5px;
     font-weight: 500;
@@ -14,5 +14,5 @@
 }
 
 .social-count-section__count{
-    color: #b02121;
+    color: #ff0000;
 }
