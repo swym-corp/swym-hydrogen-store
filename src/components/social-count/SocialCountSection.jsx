@@ -19,7 +19,7 @@ export default function SocialCountSection(productData) {
 
   return (
     <div className="social-count-section">
-      <span className="social-count-section__key-text">Social Count</span>
+      <span className="social-count-section__key-text">Social Count:</span>
       <span className="social-count-section__count">{count}</span>
     </div>
   );
