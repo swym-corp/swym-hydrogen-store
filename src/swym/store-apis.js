@@ -353,9 +353,9 @@ export const fetchSwymAccessToken = async () => {
 /**
  * @author swym
  * @dev fetches the wishlist social count of a product 
- * @param {Number} empi 
- * @param {String} du 
- * @returns {Object} data
+ * @param {Number} empi - product id of the product
+ * @param {String} du - product URL
+ * @returns {Object} data - { count, topic, empi }
  */
 export const getWishlistSocialCount = async (empi, du) => {
   if(!empi && !du){

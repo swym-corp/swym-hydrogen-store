@@ -9,7 +9,8 @@ export default function SocialCountSection(productData) {
     async function setSocialCount(){
         try {
             const res = await getWishlistSocialCount(productData.productData.product.id.split('/')[4]);
-            setCount(res.data.count);
+            if(res.data.count)
+              setCount(res.data.count);
           } catch (error) {
             console.log(error);
           }
