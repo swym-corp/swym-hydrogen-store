@@ -348,48 +348,39 @@ export const fetchSwymAccessToken = async () => {
   return res;
 };
 
-
-
 /**
  * @author swym
- * @dev fetches the wishlist social count of a product 
+ * @dev fetches the wishlist social count of a product
  * @param {Number} empi - product id of the product
  * @param {String} du - product URL
  * @returns {Object} data - { count, topic, empi }
  */
-export const getWishlistSocialCount = async (empi, du) => {
-  if(!empi && !du){
-    return new Error('Either empi or du must be supplied');
+export const getWishlistSocialCount = async ({empi, du}) => {
+  let swymConfig = getSwymLocalStorage();
+  if (!swymConfig || !swymConfig.regid) {
+    await callGenrateRegidAPI({});
   }
+  swymConfig = getSwymLocalStorage();
   var myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
-  const swymConfig = getSwymLocalStorage();
-  if (!swymConfig || !swymConfig.regid) {
-    await callGenrateRegidAPI({
-      username: null,
-      uuid: uuidv4(),
-      cb: () => fetchList(),
+  var queryParams = new URLSearchParams();
+  queryParams.append('pid', SWYM_PID);
+  queryParams.append('regid', swymConfig.regid);
+  queryParams.append('sessionid', swymConfig.sessionid);
+  if (empi) 
+    queryParams.append('empi', empi);
+  if (du) 
+    queryParams.append('du', du);
+
+  return await fetch(
+    `${SWYM_CONFIG.ENDPOINT}api/v3/product/wishlist/social-count?${queryParams}`,
+  )
+    .then((response) => response.json())
+    .then((result) => {
+      return result;
+    })
+    .catch((error) => {
+      console.log('error', error);
+      return error;
     });
-  } else {
-    var queryParams = new URLSearchParams();
-    queryParams.append('pid', SWYM_PID);
-    queryParams.append('regid', swymConfig.regid);
-    queryParams.append('sessionid', swymConfig.sessionid);
-    if(empi)
-      queryParams.append('empi', empi);
-    if(du)
-      queryParams.append('du', du);
-    
-    return await fetch(
-      `${SWYM_CONFIG.ENDPOINT}api/v3/product/wishlist/social-count?${queryParams}`
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        return result;
-      })
-      .catch((error) => {
-        console.log('error', error);
-        return error;
-      });
-  }
-}
+};

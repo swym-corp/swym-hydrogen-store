@@ -13,7 +13,9 @@ export default function SocialCountSection(productData) {
   useEffect(() => {
     async function setSocialCount(){
         try {
-            const res = await getWishlistSocialCount(productData.productData.product.id.split('/')[4]);
+            const productGQLId = productData.productData.product.id;
+            const productId = productGQLId.split("/")[4];
+            const res = await getWishlistSocialCount({ empi:productId });
             if(res?.data?.count)
               setCount(res.data.count);
           } catch (error) {
