@@ -358,6 +358,9 @@ export const fetchSwymAccessToken = async () => {
  * @returns {Object} data
  */
 export const getWishlistSocialCount = async (empi, du) => {
+  if(!empi && !du){
+    return new Error('Either empi or du must be supplied');
+  }
   var myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
   const swymConfig = getSwymLocalStorage();
@@ -368,23 +371,17 @@ export const getWishlistSocialCount = async (empi, du) => {
       cb: () => fetchList(),
     });
   } else {
-    var urlencoded = new URLSearchParams();
-    urlencoded.append('regid', swymConfig.regid);
-    urlencoded.append('sessionid', swymConfig.sessionid);
-    urlencoded.append('empi', empi);
-    urlencoded.append('du', du);
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: urlencoded,
-      redirect: 'follow',
-    };
+    var queryParams = new URLSearchParams();
+    queryParams.append('pid', SWYM_PID);
+    queryParams.append('regid', swymConfig.regid);
+    queryParams.append('sessionid', swymConfig.sessionid);
+    if(empi)
+      queryParams.append('empi', empi);
+    if(du)
+      queryParams.append('du', du);
+    
     return await fetch(
-      `${SWYM_CONFIG.ENDPOINT}api/v3/product/wishlist/social-count?pid=${encodeURIComponent(
-        SWYM_PID,
-      )}`,
-      requestOptions,
+      `${SWYM_CONFIG.ENDPOINT}api/v3/product/wishlist/social-count?${queryParams}`
     )
       .then((response) => response.json())
       .then((result) => {
