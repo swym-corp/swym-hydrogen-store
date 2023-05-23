@@ -50,7 +50,6 @@ function CreateList({
     WishlistText,
     setWishlistText,
   } = useContext(DataContext);
-  console.log('Context data: ', useContext(DataContext));
   const [openNewWishlistModal, setOpenNewWishlistModal] = useState(false);
   const [addToWishlistLoading, setaddToWishlistLoading] = useState(false);
   const [createListLoading, setcreateListLoading] = useState(false);
@@ -161,7 +160,7 @@ function CreateList({
       setalertBoxTitle('Error');
       setalertBoxInfo('Product not added to wishlist');
     }
-    setWishlistSocialCount();
+    setWishlistSocialCount(true);
   };
 
   function validateWishlistName(name) {

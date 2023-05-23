@@ -14,6 +14,7 @@ import {WishlistButton} from '../wishlist/WishlistButton.client';
 import SwymAlert from '../../swym/Alert';
 import SocialCountSection from '../social-count/SocialCountSection';
 import {getWishlistSocialCount} from '../../swym/store-apis';
+import {getSwymLocalStorage, setSwymLocalStorage} from '../../swym/Utils';
 
 export function ProductForm({productData}) {
   const {pathname, search} = useUrl();
@@ -28,13 +29,50 @@ export function ProductForm({productData}) {
       selectedVariant?.compareAtPriceV2?.amount || false;
 
   const [socialCount, setSocialCount] = useState();
-  async function setWishlistSocialCount(){
+  async function setWishlistSocialCount(skipCache){
     try {
         const productGQLId = productData.product.id;
         const productId = productGQLId.split("/")[4];
+        const localCahce = getSwymLocalStorage();
+        const cachedProducts = localCahce.products;
+        const productInfo = cachedProducts && cachedProducts.find(product => product.id == productId);
+
+        if(!skipCache){
+          if(productInfo){
+            setSocialCount(productInfo.count);
+            return;
+          }
+        }
+
         const res = await getWishlistSocialCount({ empi:productId });
-        if(res?.data?.count)
-          setSocialCount(res.data.count);
+        if(res?.data?.count){
+          const newCount = res.data.count;
+          setSocialCount(newCount);
+          if(cachedProducts){
+            if(productInfo){
+              const idx = cachedProducts.findIndex(product => product.id == productId);
+              localCahce.products[idx].count = newCount;
+              setSwymLocalStorage(localCahce);
+            }else{
+              cachedProducts.push({
+                id: productId,
+                count: res.data.count
+              });
+              setSwymLocalStorage({
+                ...localCahce,
+                products : cachedProducts
+              })
+            }
+          }else{
+            setSwymLocalStorage({
+              ...localCahce,
+              products: [{
+                id: productId,
+                count: res.data.count
+              }]
+            })
+          }
+        }
       } catch (error) {
         console.log(error);
         setSocialCount(0);
