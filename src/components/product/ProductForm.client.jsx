@@ -13,6 +13,7 @@ import {Heading, Text, Button, ProductOptions} from '~/components';
 import {WishlistButton} from '../wishlist/WishlistButton.client';
 import SwymAlert from '../../swym/Alert';
 import SocialCountSection from '../social-count/SocialCountSection';
+import {getWishlistSocialCount} from '../../swym/store-apis';
 
 export function ProductForm({productData}) {
   const {pathname, search} = useUrl();
@@ -25,6 +26,24 @@ export function ProductForm({productData}) {
   const isOnSale =
     selectedVariant?.priceV2?.amount <
       selectedVariant?.compareAtPriceV2?.amount || false;
+
+  const [socialCount, setSocialCount] = useState();
+  async function setWishlistSocialCount(){
+    try {
+        const productGQLId = productData.product.id;
+        const productId = productGQLId.split("/")[4];
+        const res = await getWishlistSocialCount({ empi:productId });
+        if(res?.data?.count)
+          setSocialCount(res.data.count);
+      } catch (error) {
+        console.log(error);
+        setSocialCount(0);
+      }
+  }
+  
+  useEffect(() => {
+    setWishlistSocialCount();
+  },[]);
 
   useEffect(() => {
     if (params || !search) return;
@@ -143,9 +162,10 @@ export function ProductForm({productData}) {
         <WishlistButton
           selectedVariant={selectedVariant}
           productData={productData}
+          setWishlistSocialCount={setWishlistSocialCount}
         />
         <SocialCountSection
-          productData={productData}
+          socialCount={socialCount}
         />
       </div>
     </form>
