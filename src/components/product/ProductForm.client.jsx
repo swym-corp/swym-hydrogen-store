@@ -33,45 +33,11 @@ export function ProductForm({productData}) {
     try {
         const productGQLId = productData.product.id;
         const productId = productGQLId.split("/")[4];
-        const localCahce = getSwymLocalStorage();
-        const cachedProducts = localCahce.products;
-        const productInfo = cachedProducts && cachedProducts.find(product => product.id == productId);
-
-        if(!skipCache){
-          if(productInfo){
-            setSocialCount(productInfo.count);
-            return;
-          }
-        }
-
-        const res = await getWishlistSocialCount({ empi:productId });
+        const res = await getWishlistSocialCount({empi: productId}, skipCache);
         if(res?.data?.count){
-          const newCount = res.data.count;
-          setSocialCount(newCount);
-          if(cachedProducts){
-            if(productInfo){
-              const idx = cachedProducts.findIndex(product => product.id == productId);
-              localCahce.products[idx].count = newCount;
-              setSwymLocalStorage(localCahce);
-            }else{
-              cachedProducts.push({
-                id: productId,
-                count: res.data.count
-              });
-              setSwymLocalStorage({
-                ...localCahce,
-                products : cachedProducts
-              })
-            }
-          }else{
-            setSwymLocalStorage({
-              ...localCahce,
-              products: [{
-                id: productId,
-                count: res.data.count
-              }]
-            })
-          }
+          setSocialCount(res.data.count);
+        }else{
+          setSocialCount(0);
         }
       } catch (error) {
         console.log(error);
