@@ -13,7 +13,7 @@ import CreateWishList from './WishlistPopUp.client';
   @param:  productData to get productId
 */
 
-export function WishlistButton({selectedVariant, productData}) {
+export function WishlistButton({selectedVariant, productData, setWishlistSocialCount}) {
   const [WishlistText, setWishlistText] = useState('Add');
   const [disabled, setDisabled] = useState(false);
   const [addToCartLoading, setaddToCartLoading] = useState(false);
@@ -74,6 +74,7 @@ export function WishlistButton({selectedVariant, productData}) {
             productId={getProductId()}
             productVariantId={getProductVariantId()}
             image={productData?.product?.media.nodes[0]?.previewImage?.url}
+            setWishlistSocialCount={setWishlistSocialCount}
           />
         )}
       </WishlistContext>

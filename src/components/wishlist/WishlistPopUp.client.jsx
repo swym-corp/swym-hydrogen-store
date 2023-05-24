@@ -39,6 +39,7 @@ function CreateList({
   setalertBoxInfo,
   setalertBoxTitle,
   setalertBoxType,
+  setWishlistSocialCount
 }) {
   let [customListName, setcustomListName] = useState('');
   const {
@@ -159,6 +160,7 @@ function CreateList({
       setalertBoxTitle('Error');
       setalertBoxInfo('Product not added to wishlist');
     }
+    setWishlistSocialCount(true);
   };
 
   function validateWishlistName(name) {

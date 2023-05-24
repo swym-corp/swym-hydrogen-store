@@ -347,3 +347,74 @@ export const fetchSwymAccessToken = async () => {
     });
   return res;
 };
+
+/**
+ * @author swym
+ * @dev fetches the wishlist social count of a product
+ * @param {Number} empi - product id of the product
+ * @param {String} du - product URL
+ * @param {Boolean} skipCache - should getting data from cache be skipped 
+ * @returns {Object} data - { count, topic, empi }
+ */
+export const getWishlistSocialCount = async ({empi, du}, skipCache = false) => {
+  try {
+    let localCahce = getSwymLocalStorage();
+    let cachedProducts = localCahce.products;
+    let currProductIdx =
+      cachedProducts &&
+      cachedProducts.findIndex((product) => product.empi == empi);
+    let productInfo = cachedProducts && cachedProducts[currProductIdx];
+
+    if (!skipCache && productInfo) {
+      return {
+        data: productInfo,
+      };
+    }
+
+    if (!localCahce || !localCahce.regid) {
+      await callGenrateRegidAPI({});
+    }
+    localCahce = getSwymLocalStorage();
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+    var queryParams = new URLSearchParams();
+    queryParams.append('pid', SWYM_PID);
+    queryParams.append('regid', localCahce.regid);
+    queryParams.append('sessionid', localCahce.sessionid);
+    if (empi) queryParams.append('empi', empi);
+    if (du) queryParams.append('du', du);
+
+    const response = await fetch(
+      `${SWYM_CONFIG.ENDPOINT}api/v3/product/wishlist/social-count?${queryParams}`,
+    );
+    const responseData = await response.json();
+
+    //
+    if (responseData?.data?.count) {
+      const newCount = responseData.data.count;
+
+      if (cachedProducts) {
+        if (productInfo) {
+          localCahce.products[currProductIdx].count = newCount;
+          setSwymLocalStorage(localCahce);
+        } else {
+          if(cachedProducts.length === 20)
+            cachedProducts.shift();
+          cachedProducts.push(responseData.data);
+          setSwymLocalStorage({
+            ...localCahce,
+            products: cachedProducts,
+          });
+        }
+      } else {
+        setSwymLocalStorage({
+          ...localCahce,
+          products: [responseData.data],
+        });
+      }
+    }
+    return responseData;
+  } catch (error) {
+    console.log(error);
+  }
+};
