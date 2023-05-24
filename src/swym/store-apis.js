@@ -353,6 +353,7 @@ export const fetchSwymAccessToken = async () => {
  * @dev fetches the wishlist social count of a product
  * @param {Number} empi - product id of the product
  * @param {String} du - product URL
+ * @param {Boolean} skipCache - should getting data from cache be skipped 
  * @returns {Object} data - { count, topic, empi }
  */
 export const getWishlistSocialCount = async ({empi, du}, skipCache = false) => {
@@ -397,6 +398,8 @@ export const getWishlistSocialCount = async ({empi, du}, skipCache = false) => {
           localCahce.products[currProductIdx].count = newCount;
           setSwymLocalStorage(localCahce);
         } else {
+          if(cachedProducts.length === 20)
+            cachedProducts.shift();
           cachedProducts.push(responseData.data);
           setSwymLocalStorage({
             ...localCahce,
