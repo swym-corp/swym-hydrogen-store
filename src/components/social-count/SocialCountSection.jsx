@@ -4,7 +4,7 @@ import './SocialCountSection.css';
 
 /**
  * @author swym
- * @param {*} productData - This contains information about the product
+ * @param {*} socialCount - social count of the product
  * @returns JSX for Social Count Section on PDP
  */
 export default function SocialCountSection({socialCount}) {
