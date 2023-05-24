@@ -29,6 +29,10 @@ export function ProductForm({productData}) {
       selectedVariant?.compareAtPriceV2?.amount || false;
 
   const [socialCount, setSocialCount] = useState();
+  /**
+   * The function fetches data from API or cache and sets the count on the UI
+   * @param {Boolean} skipCache - if picking data from cache should be skipped
+   */
   async function setWishlistSocialCount(skipCache){
     try {
         const productGQLId = productData.product.id;
