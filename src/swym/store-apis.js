@@ -352,11 +352,10 @@ export const fetchSwymAccessToken = async () => {
  * @author swym
  * @dev fetches the wishlist social count of a product
  * @param {Number} empi - product id of the product
- * @param {String} du - product URL
  * @param {Boolean} skipCache - should getting data from cache be skipped 
- * @returns {Object} data - { count, topic, empi }
+ * @returns {Object} data - { count, empi }
  */
-export const getWishlistSocialCount = async ({empi, du}, skipCache = false) => {
+export const getWishlistSocialCount = async ({empi}, skipCache = false) => {
   try {
     let localCahce = getSwymLocalStorage();
     let cachedProducts = localCahce.products;
@@ -379,13 +378,22 @@ export const getWishlistSocialCount = async ({empi, du}, skipCache = false) => {
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
     var queryParams = new URLSearchParams();
     queryParams.append('pid', SWYM_PID);
-    queryParams.append('regid', localCahce.regid);
-    queryParams.append('sessionid', localCahce.sessionid);
-    if (empi) queryParams.append('empi', empi);
-    if (du) queryParams.append('du', du);
+    
+    var urlencoded = new URLSearchParams();
+    urlencoded.append('empi',empi);
+    urlencoded.append('regid', localCahce.regid);
+    urlencoded.append('sessionid', localCahce.sessionid);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    };
 
     const response = await fetch(
       `${SWYM_CONFIG.ENDPOINT}api/v3/product/wishlist/social-count?${queryParams}`,
+      requestOptions
     );
     const responseData = await response.json();
 
