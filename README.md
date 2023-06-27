@@ -55,7 +55,7 @@ Here are some docs which will be helpful in the implementation
 
 - <a href="https://shopify.dev/docs/custom-storefronts/hydrogen/getting-started/quickstart" target="_blank">Getting started with Hydrogen</a>
 - <a href="https://github.com/swym-corp/swym-hydrogen-store/wiki/How-to-link-your-shopify-account-with-hydrogen-storefront" target="_blank">How to link your shopify account with hydrogen storefront</a>
-- <a href="https://swym-corp.github.io/hydrogen-docs/#0" target="_blank">Setting up swym wishlist code for the hydrogen store</a>
+- <a href="https://swym-corp.github.io/codelabs/hydrogen/wishlist/#0" target="_blank">Setting up swym wishlist code for the hydrogen store</a>
 - <a href="https://github.com/swym-corp/swym-hydrogen-store/wiki/Wishlist-Code-Overview" target="_blank">A brief overview of Wishlist code used for this implementation</a>
 
 ## Deployment 
