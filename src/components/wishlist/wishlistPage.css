@@ -44,10 +44,10 @@
 .swym-wishlist-style-li{
   position:relative;
   padding:15px 10px;
-  /* color:#fff; */
   border-bottom:1px solid rgba(255,255,255,.1);
   overflow:hidden;
   margin-right: 40px;
+  cursor: pointer;
 }
 
 .swym-wishlist-style-li:before{
@@ -90,7 +90,7 @@
 }
 
 .selected {
-  background-color:#5a31f4;
+  background-color:#035587;
   font-weight: bold;
   font-size: 16px;
   

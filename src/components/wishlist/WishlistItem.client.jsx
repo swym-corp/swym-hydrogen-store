@@ -61,7 +61,7 @@ function WishlistItem({name, index}) {
             <input
               type="radio"
               checked={index === selectedCustomNameIndex}
-              style={{accentColor: '#434655', color: '#434655'}}
+              style={{accentColor: '#434655', color: '#035587'}}
               onChange={() => {
                 if (selectedCustomNameIndex !== index) {
                   setselectedCustomNameIndex(index);

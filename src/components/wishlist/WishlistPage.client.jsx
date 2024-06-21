@@ -158,10 +158,9 @@ export function WishlistPage() {
         )}
         <div className="mt-3 mb-20 ">
           <Heading>
-            My Wishlist{' '}
+            Wishlist{' '}
             {noOfWishlistedProducts > 0 && `(${noOfWishlistedProducts})`}{' '}
           </Heading>
-          <Text>Wishlisted Products will be added here</Text>
           <br />
           <br />
           {wishlistCreatedLists &&
@@ -310,7 +309,7 @@ export function WishlistPage() {
                     list.length > 0 &&
                     list.map((l) => (
                       <div
-                        className="relative p-2 shadow-lg flex flex-1 flex-col justify-between"
+                        className="relative shadow-lg flex flex-1 flex-col justify-between"
                         key={l['epi']}
                       >
                         <div className="max-w-sm rounded overflow-hidden flex flex-1 flex-col justify-between">
@@ -325,9 +324,19 @@ export function WishlistPage() {
                               alt={l['dt'] || 'Product Image'}
                               src={l['iu']}
                             />
-                            <div className="px-6 py-4">
-                              <div className="font-bold text-xl mb-2">
+                            <div className="px-4 pt-2 pb-1">
+                              <div className="font-bold text-l">
                                 {l['dt']}
+                              </div>
+                            </div>
+                            <div className="px-4">
+                              <div className="text-sm">
+                                {l['bt']}
+                              </div>
+                            </div>
+                            <div className="px-4 py-2">
+                              <div className="text-l">
+                                ${l['pr']}
                               </div>
                             </div>
                           </a>
@@ -346,9 +355,9 @@ export function WishlistPage() {
                               ],
                             }}
                           >
-                            <a onClick={() => removeItemFromWishlist(l)}>
+                            <a className="p-2" onClick={() => removeItemFromWishlist(l)}>
                               <AddToCartButton
-                                className="m-auto w-full bg-black p-4 rounded text-white"
+                                className="m-auto w-full swym-bg-2 p-2 rounded text-white"
                                 variantId={`gid://shopify/ProductVariant/${l.epi}`}
                                 accessibleAddingToCartLabel="Adding item to your cart"
                               >

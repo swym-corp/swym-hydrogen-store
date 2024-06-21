@@ -57,8 +57,8 @@ export function WishlistButton({selectedVariant, productData, setWishlistSocialC
           loading={addToCartLoading}
           onClick={handleClick}
           style={{
-            backgroundColor: disabled ? '#808080' : 'white',
-            color: disabled ? '#D3D3D3' : 'black',
+            backgroundColor: disabled ? '#808080' : '#035587',
+            color: disabled ? '#D3D3D3' : 'white',
           }}
         >
           {WishlistText} to Wishlist

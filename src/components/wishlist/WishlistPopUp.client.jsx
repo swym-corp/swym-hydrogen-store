@@ -53,6 +53,7 @@ function CreateList({
   const [openNewWishlistModal, setOpenNewWishlistModal] = useState(false);
   const [addToWishlistLoading, setaddToWishlistLoading] = useState(false);
   const [createListLoading, setcreateListLoading] = useState(false);
+  const [showCreateNewList, setshowCreateNewList] = useState(false);
   const [wishlistName, setWishlistName] = useState('');
   const [error, setError] = useState();
   const className = 'swym-new-wishlist-item';
@@ -65,6 +66,14 @@ function CreateList({
   // const createListByName = async () => {
   //   setOpenNewWishlistModal(true);
   // };
+
+  const createNewList = () => {
+    setshowCreateNewList(true);
+  }
+
+  const hideCreateNewList = () => {
+    setshowCreateNewList(false);
+  }
 
   const createListByName = async () => {
     if (!error) {
@@ -79,6 +88,7 @@ function CreateList({
           setalertBoxTitle('Success');
           setalertBoxInfo('List Created');
           setWishlistName('');
+          hideCreateNewList();
           return res;
         } else {
           setshowAlertBox(true);
@@ -116,6 +126,8 @@ function CreateList({
       if (res && res.length > 0) {
         setsavedList(res);
         setselectedCustomNameIndex(0);
+      }else{
+        createNewList();
       }
       console.log('this is', res);
     } catch (e) {
@@ -198,12 +210,12 @@ function CreateList({
       open={true}
       onClose={() => onPopupToggle(false)}
       className={
-        'fixed inset-0 z-10 overflow-y-auto flex justify-center items-center w-screen'
+        'fixed inset-0 z-10 overflow-y-auto flex justify-center items-center w-screen swym-wishlist-modal-bg-overlay'
       }
     >
       <div className="flex shadow-xl flex-col bg-white text-black width-36 swym-responsive">
         <button
-          className="text-right"
+          className="text-right swym-wishlist-popup-close"
           style={{padding: '14px', fontSize: '16px'}}
           onClick={() => onPopupToggle(false)}
         >
@@ -225,59 +237,84 @@ function CreateList({
                   {title}
                 </h3>
               </div>
-              <div className="swym-wishlist-items">
-                <div className="swym-wishlist-items-title" role="radiogroup">
-                  Add To List
-                </div>
-                {savedList &&
-                  savedList.length > 0 &&
-                  savedList.map(({lname, lid}, index) => {
-                    return (
-                      <WishlistItem
-                        key={lid}
-                        name={lname}
-                        id={lid}
-                        index={index}
+              {showCreateNewList?(
+                <>
+                  <div className={className}>
+                    <div className="swym-new-wishlist-input-container">
+                      <input
+                        type="text"
+                        className={classNameInput}
+                        onChange={(e) => {
+                          validateAndSetListName(e.target.value);
+                        }}
+                        placeholder={SWYM_CONFIG.defaultWishlistName}
+                        value={wishlistName}
                       />
-                    );
-                  })}
-              </div>
-              <div className={className}>
-                <div className="swym-new-wishlist-input-container">
-                  <input
-                    type="text"
-                    className={classNameInput}
-                    onChange={(e) => {
-                      validateAndSetListName(e.target.value);
-                    }}
-                    placeholder={SWYM_CONFIG.defaultWishlistName}
-                    value={wishlistName}
-                  />
-                  <span className="error-msg" role="alert">
-                    {error}
-                  </span>
-                </div>
-              </div>
+                      <span className="error-msg" role="alert">
+                        {error}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="swym-action-btns">
+                    <Button
+                      type="button"
+                      onClick={hideCreateNewList}
+                      style={{background: '#CACBCF', borderRadius: 0}}
+                      className="swym-create-list-cancel-btn"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type="button"
+                      loading={addToWishlistLoading}
+                      onClick={createListByName}
+                      className="swym-add-to-list-btn swym-button swym-button-1 swym-bg-2 swym-color-4"
+                    >
+                      Create New Wishlist
+                    </Button>
+                  </div>
+                </>
+              ):(
+                <>
+                  <div className="swym-wishlist-items">
+                    <div className="swym-wishlist-items-title" role="radiogroup">
+                      Add To List
+                    </div>
+                    {savedList &&
+                      savedList.length > 0 &&
+                      savedList.map(({lname, lid}, index) => {
+                        return (
+                          <WishlistItem
+                            key={lid}
+                            name={lname}
+                            id={lid}
+                            index={index}
+                          />
+                        );
+                      })}
+                  </div>
 
-              <div className="swym-action-btns">
-                <Button
-                  type="button"
-                  loading={createListLoading}
-                  onClick={createListByName}
-                  style={{background: '#CACBCF', borderRadius: 0}}
-                  className="swym-new-wishlist-btn swym-button swym-button-2 swym-color-2 swym-border-color-1 swym-border-button"
-                >
-                  Create New Wishlist
-                </Button>
-                <Button
-                  type="button"
-                  loading={addToWishlistLoading}
-                  onClick={addProductToWishlist}
-                  className="swym-add-to-list-btn swym-button swym-button-1 swym-bg-2 swym-color-4"
-                >
-                  Add to Wishlist
-                </Button>
-              </div>
+                  <div className="swym-action-btns">
+                    <Button
+                      type="button"
+                      loading={createListLoading}
+                      onClick={createNewList}
+                      style={{background: '#CACBCF', borderRadius: 0}}
+                      className="swym-create-new-list-btn"
+                    >
+                      Create New Wishlist
+                    </Button>
+                    <Button
+                      type="button"
+                      loading={addToWishlistLoading}
+                      onClick={addProductToWishlist}
+                      className="swym-add-to-list-btn swym-button swym-button-1 swym-bg-2 swym-color-4"
+                    >
+                      Add to Wishlist
+                    </Button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </Dialog.Panel>

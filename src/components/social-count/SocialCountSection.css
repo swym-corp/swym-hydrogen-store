@@ -2,13 +2,13 @@
     display: flex;
     justify-content: center;
     gap: 5px;
-    background: #e08b8b;
-    color: #eee5e5;
+    background: #42445c;
+    color: white;
     padding: 10px 15px;
     border-radius: 5px;
     font-weight: 500;
 }
 
 .social-count-section__count{
-    color: #ff0000;
+    color: #71c9ff;
 }
