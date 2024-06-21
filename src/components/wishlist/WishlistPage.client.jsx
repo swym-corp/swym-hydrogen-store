@@ -163,11 +163,6 @@ export function WishlistPage() {
           </Heading>
           <br />
           <br />
-          {wishlistCreatedLists &&
-            wishlistCreatedLists.length > 0 &&
-            width > breakPoint && (
-              <h3 className="text-xl font-bold">Select List</h3>
-            )}
           {wishlistCreatedLists && wishlistCreatedLists.length == 0 && (
             <div style={{display: 'block', textAlign: 'center'}}>
               <br />
@@ -187,6 +182,7 @@ export function WishlistPage() {
               <div>
                 {width > breakPoint ? (
                   <div>
+                    <h3 className="text-xl font-bold">Select List</h3>
                     <ul className="swym-wishlist-style-ul">
                       {wishlistCreatedLists &&
                         wishlistCreatedLists.length > 0 &&
