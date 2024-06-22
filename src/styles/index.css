@@ -64,7 +64,7 @@ shop-pay-button {
   }
 
   body {
-    @apply antialiased text-primary/90 bg-contrast border-primary/10;
+    @apply antialiased text-black bg-white border-primary/10;
   }
 
   html {

@@ -5,6 +5,9 @@
     font-style: normal;
     font-display: block;
 }
+.swym-wishlist-modal-bg-overlay{
+    background: #0000006e;
+}
 .swym-modal-content {
     padding: 0;
     background: white;
@@ -17,6 +20,15 @@
     flex-direction: column;
     padding-top: 0px;
     padding-left: 0px;
+}
+.swym-responsive{
+    position: relative;
+}
+.swym-wishlist-popup-close{
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 10px;
 }
 .swym-add-wishlist-selector {
     display: flex;
@@ -69,21 +81,24 @@
     pointer-events: none;
 }
 .swym-bg-2 {
-    background: #434655 !important;
+    background: #035587 !important;
 }
 .swym-color-4 {
     color: white;
 }
-.swym-new-wishlist-btn {
+
+.swym-create-list-cancel-btn, .swym-create-new-list-btn{
     text-align: center;
     padding: 11px 32px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
     line-height: 16px;
     text-align: center;
     text-transform: uppercase;
     cursor: pointer;
+    background: white !important;
+    border: 1px solid #bababa;
 }
 .swym-color-2 {
     color: #42445c !important;
@@ -95,8 +110,7 @@
 .swym-action-btns {
     display: flex;
     justify-content: space-between;
-    padding: 20px 40px;
-    padding-left: 60px;
+    padding: 20px 10px 20px 50px;
 }
 .swym-action-btns .swym-add-btn {
     font-size: 14px;
@@ -145,7 +159,7 @@
 }
 .swym-heading-1 {
     font-weight: bold;
-    font-size: 24px;
+    font-size: 15px;
     line-height: 22px;
     color: #434655;
 }
@@ -154,7 +168,7 @@
     padding: 25px 50px 25px;
     position: relative;
     box-sizing: border-box;
-    border-bottom: 3px solid #828282;
+    border-bottom: 1px solid #828282;
     margin-left: 50px;
     padding-left: 0px;
     padding-top: 0px;
@@ -166,6 +180,7 @@
     letter-spacing: 0.05em;
     margin: 22px 0 15px;
     color: #828282;
+    margin-right: 10px;
 }
 .swym-wishlist-items {
     overflow: auto;
@@ -313,10 +328,11 @@
 .swym-new-wishlist-item {
     padding: 15px 30px 15px 30px;
     position: relative;
-    border-bottom: 1px solid #cacbcf;
     cursor: pointer;
     width: 100%;
     margin-left: 20px;
+    margin-top: 30px;
+    padding-bottom: 0px !important;
 }
 .swym-new-wishlist-item .swym-new-wishlist-input-container {
     display: flex;
@@ -331,7 +347,7 @@
     font-size: 14px;
     line-height: 14px;
     color: #434655;
-    border: 1px solid #434655;
+    border: 1px solid #bababa;
     letter-spacing: 0.05em;
     padding: 12px 14px;
     width: 100%;
@@ -436,7 +452,7 @@
         margin: 10px !important;
         width: 100% !important;
     }
-    .swym-new-wishlist-btn{
+    .swym-create-list-cancel-btn, .swym-create-new-list-btn{
         padding: 11px 20px;
         margin: 10px !important;
         width: 100% !important;
@@ -467,7 +483,7 @@
         margin: 10px !important;
         width: 100% !important;
     }
-    .swym-new-wishlist-btn{
+    .swym-create-list-cancel-btn, .swym-create-new-list-btn{
         padding: 11px 10px;
         margin: 10px !important;
         width: 100% !important;
@@ -505,7 +521,7 @@
         margin: 10px !important;
         width: 100% !important;
     }
-    .swym-new-wishlist-btn{
+    .swym-create-list-cancel-btn, .swym-create-new-list-btn{
         padding: 11px 10px;
         margin: 10px !important;
         width: 100%!important;
