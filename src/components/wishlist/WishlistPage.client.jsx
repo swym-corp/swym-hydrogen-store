@@ -39,6 +39,7 @@ export function WishlistPage() {
   const [showAlertBox, setshowAlertBox] = useState(false);
   const [alertBoxTitle, setalertBoxTitle] = useState('');
   const [alertBoxInfo, setalertBoxInfo] = useState('');
+  const [alertBoxImage, setalertBoxImage] = useState('');
   const [selectedListIndex, setselectedListIndex] = useState(0);
   const [showLoading, setshowLoading] = useState(true);
   const [wishlistCreatedLists, setWishlistCreatedLists] = useState([]);
@@ -98,14 +99,16 @@ export function WishlistPage() {
           setalertBoxType('success');
           setalertBoxTitle('Success');
           setalertBoxInfo('Product removed from wishlist');
+          setalertBoxImage(productData.iu);
         }
       })
       .catch((e) => {
         console.log(e);
         setshowAlertBox(true);
         setalertBoxType('error');
-        setalertBoxTitle('Success');
-        setalertBoxInfo('Product removed from wishlist');
+        setalertBoxTitle('Error');
+        setalertBoxInfo('Product not removed from wishlist');
+        setalertBoxImage(productData.iu);
       });
   };
 
@@ -154,6 +157,7 @@ export function WishlistPage() {
           title={alertBoxTitle}
           info={alertBoxInfo}
           type={alertBoxType}
+          image={alertBoxImage}
         />
         {openShareModal && (
           <ShareWishlist
@@ -165,7 +169,6 @@ export function WishlistPage() {
           <Heading>
             Wishlist
           </Heading>
-          <br />
           <br />
           {showLoading && (
             <div className='card-image m-4 p-6'>
@@ -262,7 +265,6 @@ export function WishlistPage() {
                             </Menu.Items>
                           </Transition>
                         </Menu>
-                        <br />
                         <br />
                         <br />
                       </div>
