@@ -19,10 +19,7 @@ export function WishlistDeleteButton({onClick}) {
   return (
     <Button
       loading={loading}
-      className="absolute 
-      text-gray-500	top-0 right-0 
-                  m-4
-                  text-xs bg-black-600 z-10"
+      className="absolute bg-black-600 bg-white border mt-1 p-2 right-1 rounded-full text-gray-500 text-xs top-0 w-auto z-10"
       onClick={handleOnClick}
     >
       <IconClose />

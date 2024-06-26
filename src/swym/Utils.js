@@ -62,8 +62,9 @@ export const deleteSwymLocalStorage = () => {
   @return: wishlistedItem - used for getting wishlisted status of button
 */
 export const getSwymLocalStorageListData = () => {
+  let data = window.localStorage.getItem(LOCAL_STORAGE_LIST) || '{}';
   return JSON.parse(
-    window.localStorage.getItem(LOCAL_STORAGE_LIST) || '{}',
+    data
   );
 };
 
@@ -75,8 +76,10 @@ export const getSwymLocalStorageListData = () => {
 */
 
 export const setSwymLocalStorageListData = (value) => {
-  return window.localStorage.setItem(
-    LOCAL_STORAGE_LIST,
-    JSON.stringify(value),
-  );
+  if(value){
+    return window.localStorage.setItem(
+      LOCAL_STORAGE_LIST,
+      JSON.stringify(value),
+    );
+  }
 };
