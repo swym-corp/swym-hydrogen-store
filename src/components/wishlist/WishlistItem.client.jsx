@@ -20,6 +20,7 @@ function WishlistItem({name, index}) {
 
   const handleClick = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setIsSelected((prev) => !prev);
     setSelectBackground((prev) => !prev);
     if (selectedCustomNameIndex !== index) {

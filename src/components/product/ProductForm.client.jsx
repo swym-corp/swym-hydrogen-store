@@ -12,7 +12,6 @@ import {
 import {Heading, Text, Button, ProductOptions} from '~/components';
 import {WishlistButton} from '../wishlist/WishlistButton.client';
 import SwymAlert from '../../swym/Alert';
-import SocialCountSection from '../social-count/SocialCountSection';
 import {getWishlistSocialCount} from '../../swym/store-apis';
 import {getSwymLocalStorage, setSwymLocalStorage} from '../../swym/Utils';
 
@@ -166,15 +165,12 @@ export function ProductForm({productData}) {
             )}
           </Button>
         </AddToCartButton>
-        {!isOutOfStock && <ShopPayButton variantIds={[selectedVariant.id]} />}
         <WishlistButton
           selectedVariant={selectedVariant}
           productData={productData}
           setWishlistSocialCount={setWishlistSocialCount}
         />
-        <SocialCountSection
-          socialCount={socialCount}
-        />
+        <p>This item has been wishlisted {socialCount} times!</p>
       </div>
     </form>
   );

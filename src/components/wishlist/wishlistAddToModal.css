@@ -13,7 +13,6 @@
     background: white;
     position: relative;
     min-width: 500px;
-    max-width: 94%;
    /* Weird issue with flexbox where flex parents parent needs height set */
     max-height: 90%;
     display: flex;
@@ -29,11 +28,15 @@
     z-index: 1;
     right: 0;
     top: 10px;
+    padding: 10px;
+    padding-top: 15px;
+    padding-right: 20px;
 }
 .swym-add-wishlist-selector {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    padding: 20px;
 }
 .swym-button.swym-add-to-watchlist-view-product:not(.swym-loaded) {
     display: none;
@@ -110,7 +113,7 @@
 .swym-action-btns {
     display: flex;
     justify-content: space-between;
-    padding: 20px 10px 20px 50px;
+    margin-top: 10px;
 }
 .swym-action-btns .swym-add-btn {
     font-size: 14px;
@@ -165,13 +168,12 @@
 }
 .swym-product-title {
     display: flex;
-    padding: 25px 50px 25px;
     position: relative;
     box-sizing: border-box;
     border-bottom: 1px solid #828282;
-    margin-left: 50px;
     padding-left: 0px;
     padding-top: 0px;
+    padding-bottom: 20px;
 }
 .swym-wishlist-items-title {
     font-weight: 500;
@@ -184,8 +186,6 @@
 }
 .swym-wishlist-items {
     overflow: auto;
-    padding: 0 50px;
-    padding-right: 10px;
     height: auto;
     max-height: 250px;
     overflow-y: scroll;
@@ -326,11 +326,9 @@
     border: 1px soild #434655;
 }
 .swym-new-wishlist-item {
-    padding: 15px 30px 15px 30px;
     position: relative;
     cursor: pointer;
     width: 100%;
-    margin-left: 20px;
     margin-top: 30px;
     padding-bottom: 0px !important;
 }
@@ -436,25 +434,15 @@
     }
     .swym-product-title{
         width: 450px;
-        margin-left: 20px;
-    }
-    .swym-wishlist-items{
-        padding-right: 10px;
     }
 
     .swym-action-btns{
-        padding: 20px 0px;
-        padding-left: 20px;
         display: block !important;
     }
     .swym-add-to-list-btn{
-        padding: 11px 20px;
-        margin: 10px !important;
         width: 100% !important;
     }
     .swym-create-list-cancel-btn, .swym-create-new-list-btn{
-        padding: 11px 20px;
-        margin: 10px !important;
         width: 100% !important;
     }
 }
@@ -468,24 +456,15 @@
     }
     .swym-product-title{
         width: 400px;
-        margin-left: 10px;
     }
-    .swym-new-wishlist-item{
-        margin-left: 10px;
-    }
+    
     .swym-action-btns{
-        padding: 20px 0px;
-        padding-left: 20px;
         display: block !important;
     }
     .swym-add-to-list-btn{
-        padding: 11px 10px;
-        margin: 10px !important;
         width: 100% !important;
     }
     .swym-create-list-cancel-btn, .swym-create-new-list-btn{
-        padding: 11px 10px;
-        margin: 10px !important;
         width: 100% !important;
     }
 }
@@ -500,34 +479,18 @@
     }
     .swym-product-title{
         width: 350px;
-        margin-left: 5px;
     }
     .swym-new-wishlist-item{
-        margin-left: 0px;
-        padding: 0 30px;
         padding-top: 15px;
     }
-    .swym-new-wishlist-item .swym-new-wishlist-input-container {
-        padding-right: 0px;
-    }
     .swym-action-btns{
-        padding: 20px 0px;
-        padding-left: 5px;
-        padding-right: 15px;
         display: block !important;
 }
     .swym-add-to-list-btn{
-        padding: 11px 10px;
-        margin: 10px !important;
         width: 100% !important;
     }
     .swym-create-list-cancel-btn, .swym-create-new-list-btn{
-        padding: 11px 10px;
-        margin: 10px !important;
         width: 100%!important;
-    }
-    .swym-wishlist-items{
-        padding: 0 30px;
     }
 }
 
