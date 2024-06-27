@@ -10,6 +10,7 @@ import {
 import {Text} from '~/components';
 import {isDiscounted, isNewArrival} from '~/lib/utils';
 import {getProductPlaceholder} from '~/lib/placeholders';
+import { WishlistButton } from '../wishlist';
 
 export function ProductCard({product, label, className, loading, onClick}) {
   let cardLabel;
@@ -30,7 +31,7 @@ export function ProductCard({product, label, className, loading, onClick}) {
     cardLabel = 'New';
   }
 
-  const styles = clsx('grid gap-6', className);
+  const styles = clsx('grid gap-6 relative', className);
 
   return (
     <Link onClick={onClick} to={`/products/${product.handle}`}>
@@ -79,6 +80,13 @@ export function ProductCard({product, label, className, loading, onClick}) {
               )}
             </Text>
           </div>
+        </div>
+        <div  className="absolute top-0 right-0 p-2 z-10">
+          <WishlistButton
+            selectedVariant={product.variants.nodes[0]}
+            productData={{ product }}
+            showWishlistIcon={true}
+          ></WishlistButton>
         </div>
       </div>
     </Link>

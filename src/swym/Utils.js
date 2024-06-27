@@ -1,4 +1,5 @@
 const LOCAL_STORAGE_TAG_NAME = 'swym-data';
+const LOCAL_STORAGE_LIST = 'swym-list-data';
 
 /*
   @author: swym
@@ -52,4 +53,33 @@ export const setSwymLocalStorage = (value) => {
 
 export const deleteSwymLocalStorage = () => {
   return window.localStorage.removeItem(LOCAL_STORAGE_TAG_NAME);
+};
+
+/*
+  @author: swym
+  @notice: get localstorage data related to swym
+  @dev:    get wishlist list data.
+  @return: wishlistedItem - used for getting wishlisted status of button
+*/
+export const getSwymLocalStorageListData = () => {
+  let data = window.localStorage.getItem(LOCAL_STORAGE_LIST) || '{}';
+  return JSON.parse(
+    data
+  );
+};
+
+/*
+  @author: swym
+  @notice: save swym localstorage 
+  @dev:    save wishlist list in localstorage
+  @param:  value - obj with wishlisted product id variant id
+*/
+
+export const setSwymLocalStorageListData = (value) => {
+  if(value){
+    return window.localStorage.setItem(
+      LOCAL_STORAGE_LIST,
+      JSON.stringify(value),
+    );
+  }
 };

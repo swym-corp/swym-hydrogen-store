@@ -7,6 +7,7 @@ import WishlistItem from './WishlistItem.client';
 import {DataContext} from './wishlist-context';
 import {Button, IconClose} from '../index';
 import './wishlistAddToModal.css';
+import { setSwymLocalStorageListData } from '../../swym/Utils';
 
 export function classNames(...args) {
   return args.filter(Boolean).join(' ');
@@ -39,7 +40,8 @@ function CreateList({
   setalertBoxInfo,
   setalertBoxTitle,
   setalertBoxType,
-  setWishlistSocialCount
+  setWishlistSocialCount,
+  onAddedToWishlist
 }) {
   let [customListName, setcustomListName] = useState('');
   const {
@@ -121,6 +123,7 @@ function CreateList({
       setaddToWishlistLoading(true);
       setcreateListLoading(true);
       const res = await fetchList();
+      setSwymLocalStorageListData(res);
       setaddToWishlistLoading(false);
       setcreateListLoading(false);
       if (res && res.length > 0) {
@@ -156,8 +159,9 @@ function CreateList({
         setalertBoxType('success');
         setalertBoxTitle('Success');
         setalertBoxInfo('Product addded to wishlist');
-        setsavedList(res);
         onPopupToggle(false);
+        getSetList();
+        onAddedToWishlist && onAddedToWishlist();
       } else {
         setshowAlertBox(true);
         setalertBoxType('error');
@@ -172,7 +176,7 @@ function CreateList({
       setalertBoxTitle('Error');
       setalertBoxInfo('Product not added to wishlist');
     }
-    setWishlistSocialCount(true);
+    setWishlistSocialCount && setWishlistSocialCount(true);
   };
 
   function validateWishlistName(name) {
@@ -216,7 +220,7 @@ function CreateList({
       <div className="flex shadow-xl flex-col bg-white text-black width-36 swym-responsive">
         <button
           className="text-right swym-wishlist-popup-close"
-          style={{padding: '14px', fontSize: '16px'}}
+          style={{ fontSize: '16px'}}
           onClick={() => onPopupToggle(false)}
         >
           <IconClose stroke="black" style={{float: 'right'}} />
@@ -226,7 +230,7 @@ function CreateList({
             <div className="swym-add-wishlist-selector">
               <div
                 className="swym-product-title swym-title-new"
-                style={{padding: '20px 0px', alignItems: 'center'}}
+                style={{ alignItems: 'center'}}
               >
                 {image && (
                   <div className="swym-product-image">
@@ -270,7 +274,7 @@ function CreateList({
                       onClick={createListByName}
                       className="swym-add-to-list-btn swym-button swym-button-1 swym-bg-2 swym-color-4"
                     >
-                      Create New Wishlist
+                      Create
                     </Button>
                   </div>
                 </>
@@ -300,7 +304,7 @@ function CreateList({
                       loading={createListLoading}
                       onClick={createNewList}
                       style={{background: '#CACBCF', borderRadius: 0}}
-                      className="swym-create-new-list-btn"
+                      className="swym-create-new-list-btn w-56 mt-3"
                     >
                       Create New Wishlist
                     </Button>
@@ -308,7 +312,7 @@ function CreateList({
                       type="button"
                       loading={addToWishlistLoading}
                       onClick={addProductToWishlist}
-                      className="swym-add-to-list-btn swym-button swym-button-1 swym-bg-2 swym-color-4"
+                      className="swym-add-to-list-btn swym-button swym-button-1 swym-bg-2 swym-color-4 w-56 mt-3"
                     >
                       Add to Wishlist
                     </Button>

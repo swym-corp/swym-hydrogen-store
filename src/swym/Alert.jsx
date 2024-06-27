@@ -13,7 +13,7 @@ import SWYM_CONFIG from './swym.config';
   @param:  type - error/success
 */
 
-const SwymAlert = ({title, info, open, toggleAlertState, type}) => {
+const SwymAlert = ({title, info, image, open, toggleAlertState, type}) => {
   useEffect(() => {
     if (!open) {
       return;
@@ -45,15 +45,19 @@ const SwymAlert = ({title, info, open, toggleAlertState, type}) => {
       onClick={() => setshowAlert(false)}
       x-show="open"
       className="fixed
-    top-24 right-4 z-50
+    top-36 right-4 z-50
     rounded-md bg-white
     shadow-xl text-left	
-    px-4 py-2 text-white transition
+    px-4 py-2 text-white transition w-80
     text-black"
       style={{minWidth: '250px'}}
     >
       <div className="flex items-center space-x-2">
-        <IconComp />
+        {image?(
+          <span>
+            <img src={image} className="border rounded-full w-10" />
+          </span>
+        ):(<IconComp />)}
         <div>
           <p className="text-aligh">{title}</p>
           <p className="text-gray-500">{info}</p>
