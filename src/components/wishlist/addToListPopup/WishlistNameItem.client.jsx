@@ -1,6 +1,7 @@
+import './WishlistNameItem.css';
 import {useContext, useState} from 'react';
-import {DataContext} from './wishlist-context';
-import {getWishlistBadgeLetters} from './Utils/utilsFunction';
+import {DataContext} from '../wishlist-context';
+import {getWishlistBadgeLetters} from '../../../swym/Utils/utilsFunction';
 
 /*
   @author: swym
@@ -9,7 +10,7 @@ import {getWishlistBadgeLetters} from './Utils/utilsFunction';
   @param:  name - name of list
   @param:  index - index of list
 */
-function WishlistItem({name, index}) {
+function WishlistNameItem({name, index}) {
   const [isSelected, setIsSelected] = useState(false);
   const [selectBackground, setSelectBackground] = useState(false);
   const {selectedCustomNameIndex, setselectedCustomNameIndex} =
@@ -75,4 +76,4 @@ function WishlistItem({name, index}) {
     </div>
   );
 }
-export default WishlistItem;
+export default WishlistNameItem;

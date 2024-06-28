@@ -1,4 +1,4 @@
-import SWYM_CONFIG from '../../../swym/swym.config';
+import SWYM_CONFIG from '../swym.config';
 export function getFullUserName(firstName, lastName, email) {
   let name = '';
   if (firstName) {
