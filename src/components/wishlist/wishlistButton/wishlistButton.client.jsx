@@ -139,7 +139,7 @@ export function WishlistButton({ variantId, productId, productUrl, productImageU
                 }} 
             /> }
             <div onClick={handleClick} className={ ` ${buttonType == 'icon'?'swym-hl-wl-icon':''}  swym-hl-wl-btn swym-hl-bg-color ${wishlisted?'swym-hl-product-wishlisted':'swym-hl-text-color'} swym-hl-btn-center-align`}>
-                { ( buttonType == 'icon' || buttonType == 'icontext' ) && <WishlistIcon /> }
+                { ( buttonType == 'icon' || buttonType == 'icontext' ) && <WishlistIcon style={{ marginRight: '5px'}} /> }
                 { ( buttonType != 'icon' ) && <span className='swym-hl-text-color'>{wishlisted?'Added':'Add'} to Wishlist</span> }
             </div>
         </WishlistContext>

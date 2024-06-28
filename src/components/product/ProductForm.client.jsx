@@ -189,7 +189,7 @@ export function ProductForm({productData}) {
             )}
           </Button>
         </AddToCartButton>
-        <WishlistButton variantId={getProductVariantId()} productId={getProductId()} productUrl={getProductUrl()} productImageUrl={getProductImageUrl()} product={productData.product} buttonType={'icon'} addToMultiList={true} />
+        <WishlistButton variantId={getProductVariantId()} productId={getProductId()} productUrl={getProductUrl()} productImageUrl={getProductImageUrl()} product={productData.product} buttonType={'icontext'} addToMultiList={true} />
         <p>This item has been wishlisted {socialCount} times!</p>
       </div>
     </form>
