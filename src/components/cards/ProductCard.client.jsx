@@ -5,14 +5,16 @@ import {
   Link,
   Money,
   useMoney,
+  useUrl,
 } from '@shopify/hydrogen';
 
 import {Text} from '~/components';
 import {isDiscounted, isNewArrival} from '~/lib/utils';
 import {getProductPlaceholder} from '~/lib/placeholders';
-import { WishlistButton } from '../wishlist';
+import { WishlistButton } from '../wishlist/wishlistButton/wishlistButton.client';
 
 export function ProductCard({product, label, className, loading, onClick}) {
+  let { origin } = useUrl();
   let cardLabel;
 
   const cardData = product?.variants ? product : getProductPlaceholder();
@@ -31,7 +33,32 @@ export function ProductCard({product, label, className, loading, onClick}) {
     cardLabel = 'New';
   }
 
-  const styles = clsx('grid gap-6 relative', className);
+  const styles = clsx('grid gap-6', className);
+
+  const getProductId = () => {
+    if (product?.id) {
+      return +product?.id.split('Product/')[1];
+    }
+  };
+
+  const getProductVariantId = () => {
+    if (product?.variants?.nodes[0]?.id) {
+      let variantId = product.variants.nodes[0].id;
+      return +variantId.split('ProductVariant/')[1];
+    }
+  };
+
+  const getProductUrl = () => {
+    if (product?.handle) {
+      return origin + '/products/'+ product.handle;
+    }
+  }
+
+  const getProductImageUrl = () => {
+    if (product?.featuredImage) {
+      return product.featuredImage.url;
+    }
+  }
 
   return (
     <Link onClick={onClick} to={`/products/${product.handle}`}>
@@ -46,7 +73,7 @@ export function ProductCard({product, label, className, loading, onClick}) {
           </Text>
           {image && (
             <Image
-              className="aspect-[4/5] w-full object-cover fadeIn"
+              className="aspect-[4/5] w-full object-cover"
               widths={[320]}
               sizes="320px"
               loaderOptions={{
@@ -63,6 +90,7 @@ export function ProductCard({product, label, className, loading, onClick}) {
           )}
         </div>
         <div className="grid gap-1">
+          <WishlistButton variantId={getProductVariantId()} productId={getProductId()} productUrl={getProductUrl()} productImageUrl={getProductImageUrl()} product={product} buttonType={'icon'} addToMultiList={true} />
           <Text
             className="w-full overflow-hidden whitespace-nowrap text-ellipsis "
             as="h3"
@@ -80,13 +108,6 @@ export function ProductCard({product, label, className, loading, onClick}) {
               )}
             </Text>
           </div>
-        </div>
-        <div  className="absolute top-0 right-0 p-2 z-10">
-          <WishlistButton
-            selectedVariant={product.variants.nodes[0]}
-            productData={{ product }}
-            showWishlistIcon={true}
-          ></WishlistButton>
         </div>
       </div>
     </Link>

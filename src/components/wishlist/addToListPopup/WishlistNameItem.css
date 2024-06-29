@@ -1,0 +1,121 @@
+.swym-wishlist-item {
+  color: #42445c;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0px 10px 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  width: 100%;
+}
+.swym-wishlist-item:last-child {
+  border: 0;
+}
+.swym-wishlist-item:hover {
+  cursor: pointer;
+}
+.swym-wishlist-item .swym-wishlist-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  display: inline-block;
+  margin-right: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.swym-wishlist-item .swym-wishlist-image img {
+  width: 100%;
+}
+.swym-wishlist-item .swym-wishlist-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.swym-wishlist-item .swym-created-by {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  color: #f8f8f8;
+  background: #a8a8a9;
+  padding: 1px 6px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 6px;
+  max-width: 100%;
+}
+.swym-wishlist-item .swym-created-by .swym-emphasis {
+  font-weight: bold;
+}
+.swym-wishlist-item .swym-wishlist-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  display: inline-block;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+.swym-value {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #434655;
+}
+
+.swym-wishlist-name {
+  font-size: 14px;
+  line-height: 16px;
+  max-width: 170px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.swym-wishlist-name .swym-wishlist-name-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: underline;
+}
+
+.swym-wishlist-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.swym-wishlist-items {
+  overflow: auto;
+  height: auto;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+.swym-wishlist-items-title {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.05em;
+  margin: 22px 0 15px;
+  color: #828282;
+  margin-right: 10px;
+}
+
+.swym-color-2 {
+  color: #42445c !important;
+  border: 1px soild #434655 !important;
+}

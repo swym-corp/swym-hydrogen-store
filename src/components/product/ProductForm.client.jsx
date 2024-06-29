@@ -10,13 +10,13 @@ import {
 } from '@shopify/hydrogen';
 
 import {Heading, Text, Button, ProductOptions} from '~/components';
-import {WishlistButton} from '../wishlist/WishlistButton.client';
-import SwymAlert from '../../swym/Alert';
-import {getWishlistSocialCount} from '../../swym/store-apis';
-import {getSwymLocalStorage, setSwymLocalStorage} from '../../swym/Utils';
+import { WishlistButton } from '../wishlist/wishlistButton/wishlistButton.client';
+import SwymAlert from '../wishlist/common/Alert';
+import {getWishlistSocialCount} from '../../swym/api/store-apis';
+import {getSwymLocalStorage, setSwymLocalStorage} from '../../swym/Utils/Utils';
 
 export function ProductForm({productData}) {
-  const {pathname, search} = useUrl();
+  const {pathname, search, origin } = useUrl();
   const [params, setParams] = useState(new URLSearchParams(search));
 
   const {options, setSelectedOption, selectedOptions, selectedVariant} =
@@ -99,6 +99,30 @@ export function ProductForm({productData}) {
     [setSelectedOption, params, pathname],
   );
 
+  const getProductId = () => {
+    if (productData?.product?.id) {
+      return +productData?.product?.id.split('Product/')[1];
+    }
+  };
+
+  const getProductVariantId = () => {
+    if (selectedVariant?.id) {
+      return +selectedVariant?.id.split('ProductVariant/')[1];
+    }
+  };
+
+  const getProductUrl = () => {
+    if (productData?.product?.handle) {
+      return origin + '/products/'+ productData.product.handle;
+    }
+  }
+
+  const getProductImageUrl = () => {
+    if (productData?.product?.featuredImage) {
+      return productData.product.featuredImage.url;
+    }
+  }
+
   return (
     <form className="grid gap-10">
       {
@@ -165,11 +189,7 @@ export function ProductForm({productData}) {
             )}
           </Button>
         </AddToCartButton>
-        <WishlistButton
-          selectedVariant={selectedVariant}
-          productData={productData}
-          setWishlistSocialCount={setWishlistSocialCount}
-        />
+        <WishlistButton variantId={getProductVariantId()} productId={getProductId()} productUrl={getProductUrl()} productImageUrl={getProductImageUrl()} product={productData.product} buttonType={'icontext'} addToMultiList={true} />
         <p>This item has been wishlisted {socialCount} times!</p>
       </div>
     </form>

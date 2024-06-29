@@ -1,7 +1,7 @@
-import {getSwymLocalStorage} from './Utils';
+import {getSwymLocalStorage} from '../Utils/Utils';
 import {callGenrateRegidAPI} from './store-apis';
 import {v4 as uuidv4} from 'uuid';
-import SWYM_CONFIG from './swym.config';
+import SWYM_CONFIG from '../swym.config';
 
 const SWYM_PID = SWYM_CONFIG.PID;
 /*

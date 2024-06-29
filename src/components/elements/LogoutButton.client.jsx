@@ -1,4 +1,4 @@
-import {deleteSwymLocalStorage} from '../../swym/Utils';
+import {deleteSwymLocalStorage} from '../../swym/Utils/Utils';
 
 export function LogoutButton(props) {
   const logout = () => {

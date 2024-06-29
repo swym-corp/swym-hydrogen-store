@@ -1,0 +1,177 @@
+.swym-bg-2 {
+    background: #035587 !important;
+}
+
+.swym-color-4 {
+    color: white;
+}
+
+#swym-hl-add-to-list-popup{
+    position: fixed; 
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; 
+    z-index: 10000; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100vw; 
+    height: 100vh;
+    background-color: #00000061;
+}
+
+.swym-hl-modal-content {
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    display: flex; 
+    flex-direction: column; 
+    color: #000000; 
+    background-color: #ffffff; 
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); 
+    width: 600px;
+    position: relative;
+}
+  
+.swym-hl-modal-close-btn{
+    padding: 4px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 25px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.swym-hl-product-title {
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    border-bottom: 1px solid #828282;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+.swym-hl-product-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-right: 14px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.swym-hl-modal-loader{
+    display: flex;
+    justify-content: center;
+    align-item: center;
+    margin-right: 5px;
+}
+
+.swym-hl-modal-action-btn{
+    cursor: pointer;
+    padding: 8px 26px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+}
+
+.swym-hl-modal-action {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.swym-hl-new-wishlist-input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 0px;
+    margin-top: 20px;
+}
+.swym-hl-new-wishlist-item .swym-new-wishlist-name {
+    background: #fff;
+    flex-grow: 1;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    color: #434655;
+    border: 1px solid #bababa;
+    letter-spacing: 0.05em;
+    padding: 12px 14px;
+    width: 100%;
+}
+.swym-hl-new-wishlist-item .swym-new-wishlist-name:focus {
+    border: 1px solid #dc3b1a;
+    padding: 12px 14px;
+}
+.swym-hl-new-wishlist-item .error-msg {
+    display: block;
+    padding: 5px;
+}
+.swym-hl-new-wishlist-item .swym-icon {
+    position: absolute;
+    top: 24px;
+    right: 0;
+}
+.swym-hl-new-wishlist-item .swym-icon::before {
+    content: "\e908";
+    font-size: 15px;
+}
+.swym-hl-new-wishlist-item.swym-selected .swym-icon::before {
+    content: "\e907";
+}
+.swym-hl-new-wishlist-item:last-child {
+    border: 0;
+}
+
+@media screen and (max-width: 450px) {
+    .swym-hl-modal-action-btn{
+        width: 100%;
+    }
+}
+
+.error-msg {
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.05em;
+    color: #CC0000;
+    font-style: italic;
+    padding: 5px;
+}
+
+.swym-product-name {
+    line-height: 30px;
+    color: #434655;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.swym-heading, .swym-label {
+    font-size: 100%;
+    font: inherit;
+    font-family: "HelveticaNeue", Helvetica, Verdana, Arial, sans-serif;
+    line-height: 1.4em;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    border: 0;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-transform: none;
+    text-align: left;
+}
+
+.swym-heading-1 {
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 22px;
+    color: #434655;
+}

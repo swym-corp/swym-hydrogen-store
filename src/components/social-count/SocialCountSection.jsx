@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getWishlistSocialCount} from '../../swym/store-apis';
+import {getWishlistSocialCount} from '../../swym/api/store-apis';
 import './SocialCountSection.css';
 
 /**

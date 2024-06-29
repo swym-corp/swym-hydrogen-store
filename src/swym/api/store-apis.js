@@ -2,10 +2,10 @@ import {
   setSwymLocalStorage,
   getSwymLocalStorage,
   updateLocalStorageRegid,
-} from './Utils';
+} from '../Utils/Utils';
 import {v4 as uuidv4} from 'uuid';
 import axios from 'axios';
-import SWYM_CONFIG from './swym.config';
+import SWYM_CONFIG from '../swym.config';
 const SWYM_PID = SWYM_CONFIG.PID;
 /*
   @author: swym
@@ -81,6 +81,7 @@ export const callValidateSyncRegidAPI = ({
     };
   }
 };
+
 export const AddToWishlist = async (
   productId,
   variantId,
@@ -96,12 +97,16 @@ export const AddToWishlist = async (
       cb: () => AddToWishlist(productId, variantId, productUrl),
     });
   } else if (customLid) {
-    return updateList(productId, variantId, productUrl, customLid)
+    try{
+      return updateList(productId, variantId, productUrl, customLid)
       .then((response) => {
         // console.log("update list" , response)
         return response;
       })
       .catch((e) => console.log(e));
+    }catch(e){
+      console.log('error update list', e);
+    }
   } else {
     const res = fetchList().then((response) => {
       if (response) {
@@ -138,6 +143,52 @@ export const AddToWishlist = async (
     });
     return res;
   }
+};
+
+/*
+  @notice: to remove product from wishlisted items
+  @dev:    delete product from swym wishlisted products
+  @author: swym
+*/
+export const removeFromWishlist = async (
+  productId,
+  variantId,
+  productUrl, listId) => {
+  var myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  const swymConfig = getSwymLocalStorage();
+
+  var urlencoded = new URLSearchParams();
+  urlencoded.append('regid', swymConfig.regid);
+  urlencoded.append('sessionid', swymConfig.sessionid);
+  urlencoded.append('lid', listId);
+  urlencoded.append(
+    'd',
+    `[{ "epi":${variantId}, "empi": ${productId}, "du":"${productUrl}"}]`,
+  );
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow',
+  };
+  return fetch(
+    `${SWYM_CONFIG.ENDPOINT}api/v3/lists/update-ctx?pid=${encodeURIComponent(
+      SWYM_PID,
+    )}`,
+    requestOptions,
+  )
+    .then((response) => response.json())
+    .then((result) => {
+      return result;
+    })
+    .catch((error) => {
+      console.log('error', error);
+
+      return error;
+    });
 };
 
 /*

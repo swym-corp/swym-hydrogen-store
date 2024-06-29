@@ -4,8 +4,8 @@ import {getInputStyleClasses} from '../../lib/styleUtils';
 import {
   callGenrateRegidAPI,
   callValidateSyncRegidAPI,
-} from '../../swym/store-apis';
-import {getSwymLocalStorage} from '../../swym/Utils';
+} from '../../swym/api/store-apis';
+import {getSwymLocalStorage} from '../../swym/Utils/Utils';
 
 export function AccountLoginForm({shopName}) {
   const navigate = useNavigate();

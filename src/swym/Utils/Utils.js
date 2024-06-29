@@ -1,5 +1,6 @@
 const LOCAL_STORAGE_TAG_NAME = 'swym-data';
 const LOCAL_STORAGE_LIST = 'swym-list-data';
+const LOCAL_STORAGE_LIST_ID = 'swym-list-id';
 
 /*
   @author: swym
@@ -80,6 +81,33 @@ export const setSwymLocalStorageListData = (value) => {
     return window.localStorage.setItem(
       LOCAL_STORAGE_LIST,
       JSON.stringify(value),
+    );
+  }
+};
+
+/*
+  @author: swym
+  @notice: get localstorage listid related to swym
+  @dev:    get wishlist list id.
+  @return: ListId - used for add/remove product from list
+*/
+export const getSwymLocalStorageListId = () => {
+  let listId = window.localStorage.getItem(LOCAL_STORAGE_LIST_ID) || null;
+  return listId;
+};
+
+/*
+  @author: swym
+  @notice: save swym localstorage 
+  @dev:    save listId in localstorage
+  @param:  value - ListId
+*/
+
+export const setSwymLocalStorageListId = (value) => {
+  if(value){
+    return window.localStorage.setItem(
+      LOCAL_STORAGE_LIST_ID,
+      value,
     );
   }
 };
