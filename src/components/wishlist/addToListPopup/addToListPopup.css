@@ -23,7 +23,7 @@
 
 .swym-hl-modal-content {
     margin: auto;
-    padding: 20px;
+    padding: 25px;
     border: 1px solid #888;
     display: flex; 
     flex-direction: column; 
@@ -37,8 +37,8 @@
 .swym-hl-modal-close-btn{
     padding: 4px;
     position: absolute;
-    top: 5px;
-    right: 15px;
+    top: 10px;
+    right: 20px;
     font-size: 25px;
     z-index: 100;
     cursor: pointer;
