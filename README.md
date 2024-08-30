@@ -12,7 +12,7 @@
 
 [To know more about Hydrogen you can check this doc](https://shopify.dev/custom-storefronts/hydrogen)
 
-[Check out our API Docs](https://api-docs.swym.it/v3/#rest-apis)
+[Check out our API Docs](https://developers.swym.it/docs/rest-api-lists-getting-started)
 
 [Here's a demo store with Swym Wishlist already setup](https://swym-hydrogen-store.vercel.app)
 
